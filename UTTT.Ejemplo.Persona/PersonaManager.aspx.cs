@@ -61,20 +61,20 @@ namespace UTTT.Ejemplo.Persona
                         this.session.Parametros.Add("baseEntity", this.baseEntity);
                     }
                     List<CatSexo> lista = dcGlobal.GetTable<CatSexo>().ToList();
-                    CatSexo catTemp = new CatSexo();
-                    catTemp.id = -1;
-                    catTemp.strValor = "Seleccionar";
-                    lista.Insert(0, catTemp);
                     this.ddlSexo.DataTextField = "strValor";
                     this.ddlSexo.DataValueField = "id";
-                    this.ddlSexo.DataSource = lista;
-                    this.ddlSexo.DataBind();
 
-                    this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
-                    this.ddlSexo.AutoPostBack = true;
                     if (this.idPersona == 0)
                     {
                         this.lblAccion.Text = "Agregar";
+                        CalendarExtender1.SelectedDate = DateTime.Now;
+
+                        CatSexo catTemp = new CatSexo();
+                        catTemp.id = -1;
+                        catTemp.strValor = "Seleccionar";
+                        lista.Insert(0, catTemp);
+                        this.ddlSexo.DataSource = lista;
+                        this.ddlSexo.DataBind();
                     }
                     else
                     {
@@ -83,9 +83,17 @@ namespace UTTT.Ejemplo.Persona
                         this.txtAPaterno.Text = this.baseEntity.strAPaterno;
                         this.txtAMaterno.Text = this.baseEntity.strAMaterno;
                         this.txtClaveUnica.Text = this.baseEntity.strClaveUnica;
-                        this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
                         this.txtCURP.Text = this.baseEntity.strCurp;
-                    }                
+
+                        CalendarExtender1.SelectedDate = this.baseEntity.dteFechaNacimiento.Value.Date;
+
+                        this.ddlSexo.DataSource = lista;
+                        this.ddlSexo.DataBind();
+                        this.setItem(ref this.ddlSexo, baseEntity.CatSexo.strValor);
+                    }
+
+                    this.ddlSexo.SelectedIndexChanged += new EventHandler(ddlSexo_SelectedIndexChanged);
+                    this.ddlSexo.AutoPostBack = true;
                 }
 
             }
@@ -96,28 +104,64 @@ namespace UTTT.Ejemplo.Persona
             }
 
         }
+       
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             try
             {
+
+                if (this.txtClaveUnica.Text.Trim() == String.Empty && this.txtNombre.Text.Trim() == String.Empty && this.txtAPaterno.Text.Trim() == String.Empty && 
+                    this.txtAMaterno.Text.Trim() == String.Empty && this.txtCURP.Text.Trim() == String.Empty && int.Parse(this.ddlSexo.Text).Equals(-1))
+                {
+                    this.Response.Redirect("~/PersonaPrincipal.aspx", true);
+                }
+                else
+                {
+                    btnAceptar.ValidationGroup = "svGuardar";
+                    Page.Validate("svGuardar");
+                }
+                if(!Page.IsValid)
+                {
+                    return;
+                }
+
+                string date = Request.Form[this.txtFechaNacimiento.UniqueID];
+                DateTime fechaNacimiento = Convert.ToDateTime(date);
+
                 DataContext dcGuardar = new DcGeneralDataContext();
                 UTTT.Ejemplo.Linq.Data.Entity.Persona persona = new Linq.Data.Entity.Persona();
                 if (this.idPersona == 0)
                 {
                     persona.strClaveUnica = this.txtClaveUnica.Text.Trim();
-  
                     persona.strNombre = this.txtNombre.Text.Trim();
                     persona.strAMaterno = this.txtAMaterno.Text.Trim();
                     persona.strAPaterno = this.txtAPaterno.Text.Trim();
-                    persona.idCatSexo = int.Parse(this.ddlSexo.Text);
                     persona.strCurp = this.txtCURP.Text.Trim();
+                    persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                    
+                    persona.dteFechaNacimiento = fechaNacimiento;
+                    String mensaje = String.Empty;
+                    if (!this.validacion(persona, ref mensaje))
+                    {
+                        this.lblMensaje.Text = mensaje;
+                        this.lblMensaje.Visible = true;
+                        return;
+                    }
+
+                    //if(!this.validaSql(ref mensaje))
+                    //{
+                    //    this.lblMensaje.Text = mensaje;
+                    //    this.lblMensaje.Visible = true;
+                    //    return;
+                    //}
+
                     dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().InsertOnSubmit(persona);
                     dcGuardar.SubmitChanges();
                     this.showMessage("El registro se agrego correctamente.");
                     this.Response.Redirect("~/PersonaPrincipal.aspx", false);
-                    
-                }
+
+                } 
                 if (this.idPersona > 0)
                 {
                     persona = dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().First(c => c.id == idPersona);
@@ -125,20 +169,29 @@ namespace UTTT.Ejemplo.Persona
                     persona.strNombre = this.txtNombre.Text.Trim();
                     persona.strAMaterno = this.txtAMaterno.Text.Trim();
                     persona.strAPaterno = this.txtAPaterno.Text.Trim();
-                    persona.idCatSexo = int.Parse(this.ddlSexo.Text);
                     persona.strCurp = this.txtCURP.Text.Trim();
+                    persona.idCatSexo = int.Parse(this.ddlSexo.Text);
+                    persona.dteFechaNacimiento = fechaNacimiento;
+
+                    String mensaje = String.Empty;
+                    if (!this.validacion(persona, ref mensaje))
+                    {
+                        this.lblMensaje.Text = mensaje;
+                        this.lblMensaje.Visible = true;
+                        return;
+                    }
+
                     dcGuardar.SubmitChanges();
                     this.showMessage("El registro se edito correctamente.");
                     this.Response.Redirect("~/PersonaPrincipal.aspx", false);
                 }
-
             }
             catch (Exception _e)
             {
                 this.showMessageException(_e.Message);
                 MailMessage correo = new MailMessage();
                 correo.From = new MailAddress("tareaspruebascarlo@gmail.com", "CorreoPrueba", System.Text.Encoding.UTF8);//Correo de salida
-                correo.To.Add("cpark2848@gmail.com"); //Correo destino?
+                correo.To.Add("19300599@uttt.edu.mx"); //Correo destino?
                 correo.Subject = "Correo de prueba"; //Asunto
                 correo.Body = _e.Message.ToString(); //Mensaje del correo
                 correo.IsBodyHtml = true;
@@ -247,15 +300,35 @@ namespace UTTT.Ejemplo.Persona
                 return false;
             }
 
-            if (_persona.strAPaterno.Length < 19)
+            if (_persona.strAPaterno.Length > 18)
             {
                 _mensaje = "Los caracteres permitidos para CURP rebasan lo establecido de 18";
+                return false;
+            }
+            if(_persona.strNombre.Length < 3)
+            {
+                _mensaje = "Proporciona un nombre valido";
+                return false;
+            }
+            if (_persona.strAMaterno.Length < 3)
+            {
+                _mensaje = "Proporciona un nombre valido";
+                return false;
+            }
+            if (_persona.strAPaterno.Length < 3)
+            {
+                _mensaje = "Proporciona un nombre valido";
                 return false;
             }
 
             return true;
 
         }
+
+        //private bool validaSql(ref String _mensaje)
+        //{
+        //    return;
+        //}
 
         #endregion
 

@@ -21,7 +21,7 @@ namespace UTTT.Ejemplo.Persona
         {
             MailMessage correo = new MailMessage();
             correo.From = new MailAddress("tareaspruebascarlo@gmail.com", "CorreoPrueba", System.Text.Encoding.UTF8);//Correo de salida
-            correo.To.Add("cpark2848@gmail.com"); //Correo destino?
+            correo.To.Add("19300599@uttt.edu.mx"); //Correo destino?
             correo.Subject = "Correo de prueba"; //Asunto
             correo.Body = error; //Mensaje del correo
             correo.IsBodyHtml = true;
@@ -35,5 +35,6 @@ namespace UTTT.Ejemplo.Persona
             smtp.EnableSsl = true;//True si el servidor de correo permite ssl
             smtp.Send(correo);
         }
+
     }
 }

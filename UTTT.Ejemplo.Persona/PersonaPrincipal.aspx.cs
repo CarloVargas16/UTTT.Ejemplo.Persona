@@ -30,7 +30,7 @@ namespace UTTT.Ejemplo.Persona
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            AppDomain.CurrentDomain.FirstChanceException += (enviar, ee) =>{
+            AppDomain.CurrentDomain.FirstChanceException += (enviar, ee) => {
                 System.Text.StringBuilder msg = new System.Text.StringBuilder();
                 msg.AppendLine(ee.Exception.GetType().FullName);
                 msg.AppendLine(ee.Exception.Message);
@@ -60,7 +60,7 @@ namespace UTTT.Ejemplo.Persona
             }
             catch (Exception _e)
             {
-                this.showMessage("Ha ocurrido un problema al cargar la página");               
+                this.showMessage("Ha ocurrido un problema al cargar la página");
             }
         }
 
@@ -85,7 +85,7 @@ namespace UTTT.Ejemplo.Persona
                 parametrosRagion.Add("idPersona", "0");
                 this.session.Parametros = parametrosRagion;
                 this.Session["SessionManager"] = this.session;
-                this.Response.Redirect(this.session.Pantalla, false);               
+                this.Response.Redirect(this.session.Pantalla, false);
             }
             catch (Exception _e)
             {
@@ -109,10 +109,10 @@ namespace UTTT.Ejemplo.Persona
                     sexoBool = true;
                 }
 
-                Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Persona, bool>> 
+                Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Persona, bool>>
                     predicate =
                     (c =>
-                    ((sexoBool) ? c.idCatSexo == int.Parse(this.ddlSexo.Text) : true) &&             
+                    ((sexoBool) ? c.idCatSexo == int.Parse(this.ddlSexo.Text) : true) &&
                     ((nombreBool) ? (((nombreBool) ? c.strNombre.Contains(this.txtNombre.Text.Trim()) : false)) : true)
                     );
 
@@ -120,7 +120,7 @@ namespace UTTT.Ejemplo.Persona
 
                 List<UTTT.Ejemplo.Linq.Data.Entity.Persona> listaPersona =
                     dcConsulta.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().Where(predicate).ToList();
-                e.Result = listaPersona;        
+                e.Result = listaPersona;
             }
             catch (Exception _e)
             {
@@ -185,7 +185,7 @@ namespace UTTT.Ejemplo.Persona
                 dcDelete.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().DeleteOnSubmit(persona);
                 dcDelete.SubmitChanges();
                 this.showMessage("El registro se agrego correctamente.");
-                this.DataSourcePersona.RaiseViewChanged();                
+                this.DataSourcePersona.RaiseViewChanged();
             }
             catch (Exception _e)
             {
@@ -212,5 +212,23 @@ namespace UTTT.Ejemplo.Persona
         }
 
         #endregion
+
+        protected void onTxtNombreTextChange(object sender, EventArgs e)
+        {
+            try
+            {
+                this.DataSourcePersona.RaiseViewChanged();
+            }
+            catch (Exception _e)
+            {
+                this.showMessage("Ha ocurrido un problema al buscar");
+            }
+        }
+
+        protected void buscarTextBox(object sender, EventArgs e)
+        {
+            this.DataSourcePersona.RaiseViewChanged();
+        }
+
     }
 }

@@ -8,7 +8,7 @@
     <title></title>
 </head>
 <body>
-    Ha ocurrido un error inesperado
+   Error en el servidor contacte o regrese a la vista principal
     <form id="form1" runat="server">
         <div>
             <img src="Images/errores_interpretacion.jpg" />
