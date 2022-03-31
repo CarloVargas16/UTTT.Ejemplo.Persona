@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using UTTT.Ejemplo.Persona.Control;
 using UTTT.Ejemplo.Persona.Control.Ctrl;
 using UTTT.Ejemplo.Persona.Data.Entity;
-using UTTT.Ejemplo.Persona.Control;
 
 
 namespace UTTT.Ejemplo.Persona
@@ -14,22 +12,23 @@ namespace UTTT.Ejemplo.Persona
     public partial class direccion : System.Web.UI.Page
     {
         SessionManager session = new SessionManager();
-        
-        
+
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
             this.session = (SessionManager)this.Session["SessionManager"];
             if (!Page.IsPostBack)
-            {                
+            {
                 this.txtPersona.Text = this.session.StrNombrePersona;
                 this.setGridView();
             }
-            
+
         }
 
         private void setGridView()
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 CtrlDireccion ctrlPersona = new CtrlDireccion();
@@ -53,10 +52,12 @@ namespace UTTT.Ejemplo.Persona
             {
 
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 if (this.session.AccionAgregar)
@@ -100,7 +101,7 @@ namespace UTTT.Ejemplo.Persona
                     else
                     {
                         Response.Write("<script type=\"text/javascript\">alert('El registro no se actualizó correctamente');</script>");
-                    }  
+                    }
                 }
 
                 this.session.AccionEditar = false;
@@ -110,13 +111,14 @@ namespace UTTT.Ejemplo.Persona
             {
 
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         private void limpiar()
         {
             this.txtCalle.Text = String.Empty;
             this.txtColonia.Text = String.Empty;
-            this.txtNumero.Text = String.Empty;           
+            this.txtNumero.Text = String.Empty;
         }
 
         protected void btnRegresar_Click(object sender, EventArgs e)
@@ -126,15 +128,16 @@ namespace UTTT.Ejemplo.Persona
 
         protected void dgvDireccion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 int index = Convert.ToInt32(e.CommandArgument.ToString());
                 GridViewRow row = this.dgvDireccion.Rows[index];
-                  ListItem item = new ListItem();
-                    item.Text = Server.HtmlDecode(row.Cells[6].Text);
+                ListItem item = new ListItem();
+                item.Text = Server.HtmlDecode(row.Cells[6].Text);
                 this.session.IdManager = int.Parse(item.Text);
                 if (e.CommandName.Equals("Editar"))
-                {                    
+                {
                     CtrlDireccion ctrlDireccion = new CtrlDireccion();
                     UTTT.Ejemplo.Persona.Data.Entity.Direccion direccion = new Data.Entity.Direccion();
                     direccion.Id = this.session.IdManager;
@@ -147,9 +150,9 @@ namespace UTTT.Ejemplo.Persona
                         this.txtColonia.Text = personaDireccion.StrColonia;
                         this.txtNumero.Text = personaDireccion.StrNumero;
                         this.session.AccionAgregar = false;
-                        this.session.AccionEditar = true;                       
-                    }                
-                   
+                        this.session.AccionEditar = true;
+                    }
+
                 }
                 if (e.CommandName.Equals("Eliminar"))
                 {
@@ -167,13 +170,14 @@ namespace UTTT.Ejemplo.Persona
                     else
                     {
                         Response.Write("<script type=\"text/javascript\">alert('El registro no se elimino correctamente');</script>");
-                    }  
+                    }
                 }
             }
             catch (Exception _e)
-            { 
-            
+            {
+
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
     }

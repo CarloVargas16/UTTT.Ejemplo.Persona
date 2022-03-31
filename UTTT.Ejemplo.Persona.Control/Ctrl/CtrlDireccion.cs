@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using UTTT.Ejemplo.Persona.Control.Interface;
-using UTTT.Ejemplo.Persona.Data.Entity;
 using System.Data.SqlClient;
+using UTTT.Ejemplo.Persona.Control.Interface;
 
 namespace UTTT.Ejemplo.Persona.Control.Ctrl
 {
@@ -13,6 +9,7 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
     {
         public bool insertar(object _o)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 UTTT.Ejemplo.Persona.Data.Entity.Direccion direccion = (UTTT.Ejemplo.Persona.Data.Entity.Direccion)_o;
@@ -31,11 +28,13 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
             {
 
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
             return false;
         }
 
         public bool eliminar(object _o)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 UTTT.Ejemplo.Persona.Data.Entity.Direccion direccion = (UTTT.Ejemplo.Persona.Data.Entity.Direccion)_o;
@@ -50,18 +49,20 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
             {
 
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
             return false;
         }
 
         public bool actualizar(object _o)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 UTTT.Ejemplo.Persona.Data.Entity.Direccion direccion = (UTTT.Ejemplo.Persona.Data.Entity.Direccion)_o;
                 SqlConnection conn = base.sqlConnection();
                 conn.Open();
                 SqlCommand comm = new SqlCommand("Update Direccion  set  strCalle='" + direccion.StrCalle +
-                     "', strColonia ='" + direccion.StrColonia+
+                     "', strColonia ='" + direccion.StrColonia +
                      "', strNumero ='" + direccion.StrNumero +
                      "' where id=" + direccion.Id, conn);
 
@@ -73,18 +74,20 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
             {
 
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
             return false;
         }
 
         public List<object> consultarLista(object _o)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 UTTT.Ejemplo.Persona.Data.Entity.Direccion direccion = (UTTT.Ejemplo.Persona.Data.Entity.Direccion)_o;
                 SqlConnection conn = base.sqlConnection();
                 conn.Open();
 
-                SqlCommand comm = new SqlCommand("Select * from Direccion where IdPersona ="+ direccion.IdPersona , conn);
+                SqlCommand comm = new SqlCommand("Select * from Direccion where IdPersona =" + direccion.IdPersona, conn);
                 SqlDataReader reader = comm.ExecuteReader();
 
                 List<Object> lista = new List<object>();
@@ -107,11 +110,13 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
             {
 
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
             return null;
         }
 
         public object consultarItem(object _o)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 UTTT.Ejemplo.Persona.Data.Entity.Direccion direccion = (UTTT.Ejemplo.Persona.Data.Entity.Direccion)_o;
@@ -137,6 +142,7 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
             {
 
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
             return null;
         }
     }

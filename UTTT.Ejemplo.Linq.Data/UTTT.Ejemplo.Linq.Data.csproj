@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UTTT.Ejemplo.Linq.Data</RootNamespace>
     <AssemblyName>UTTT.Ejemplo.Linq.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -45,14 +45,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Entity\Categoria.cs" />
+    <Compile Include="Entity\CatEstadoCivil.cs" />
     <Compile Include="Entity\CatSexo.cs" />
+    <Compile Include="Entity\CatValorUsuario.cs" />
     <Compile Include="Entity\DcGeneral.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DcGeneral.dbml</DependentUpon>
     </Compile>
     <Compile Include="Entity\Direccion.cs" />
+    <Compile Include="Entity\Directorio.cs" />
+    <Compile Include="Entity\Login.cs" />
+    <Compile Include="Entity\NumeroSeguro.cs" />
     <Compile Include="Entity\Persona.cs" />
+    <Compile Include="Entity\Pertenencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

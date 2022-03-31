@@ -1,14 +1,12 @@
 ﻿#region Using
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
+using System.Linq.Expressions;
 using System.Web.UI.WebControls;
 using UTTT.Ejemplo.Linq.Data.Entity;
-using System.Data.Linq;
-using System.Linq.Expressions;
-using System.Collections;
 using UTTT.Ejemplo.Persona.Control;
 using UTTT.Ejemplo.Persona.Control.Ctrl;
 
@@ -24,7 +22,9 @@ namespace UTTT.Ejemplo.Persona
         private int idPersona = 0;
         private UTTT.Ejemplo.Linq.Data.Entity.Persona baseEntity;
         private DataContext dcGlobal = new DcGeneralDataContext();
+#pragma warning disable CS0414 // El campo 'DireccionManager.tipoAccion' está asignado pero su valor nunca se usa
         private int tipoAccion = 0;
+#pragma warning restore CS0414 // El campo 'DireccionManager.tipoAccion' está asignado pero su valor nunca se usa
         private int idDireccion = 0;
 
         #endregion
@@ -33,6 +33,7 @@ namespace UTTT.Ejemplo.Persona
 
         protected void Page_Load(object sender, EventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 Response.Buffer = true;
@@ -41,7 +42,7 @@ namespace UTTT.Ejemplo.Persona
                     int.Parse(this.session.Parametros["idPersona"].ToString()) : 0;
 
                 this.idDireccion = this.session.Parametros["idDireccion"] != null ?
-                    int.Parse(this.session.Parametros["idDireccion"].ToString()) : 0;              
+                    int.Parse(this.session.Parametros["idDireccion"].ToString()) : 0;
 
                 if (!this.IsPostBack)
                 {
@@ -54,7 +55,7 @@ namespace UTTT.Ejemplo.Persona
                     else
                     {
                         this.lblAccion.Text = "Editar";
-                        
+
                     }
                 }
             }
@@ -63,13 +64,15 @@ namespace UTTT.Ejemplo.Persona
                 this.showMessage("Ha ocurrido un problema al cargar la página");
                 this.Response.Redirect("~/PersonaPrincipal.aspx", false);
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void LinqDataSourceDireccion_Selecting(object sender, LinqDataSourceSelectEventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
-                DataContext dcConsulta = new DcGeneralDataContext();               
+                DataContext dcConsulta = new DcGeneralDataContext();
                 Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Direccion, bool>>
                     predicate = c => c.idPersona == this.idPersona;
                 predicate.Compile();
@@ -82,10 +85,12 @@ namespace UTTT.Ejemplo.Persona
                 this.showMessage("Ha ocurrido un problema al cargar la página");
                 this.Response.Redirect("~/PersonaPrincipal.aspx", false);
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void dgvDireccion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 int idPersona = int.Parse(e.CommandArgument.ToString());
@@ -97,17 +102,19 @@ namespace UTTT.Ejemplo.Persona
                     case "Eliminar":
                         this.eliminar(idPersona);
                         break;
-                    
+
                 }
             }
             catch (Exception _e)
             {
                 this.showMessage("Ha ocurrido un problema al seleccionar");
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 this.session.Pantalla = "~/DireccionExtraManager.aspx";
@@ -123,6 +130,7 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al agregar");
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
 

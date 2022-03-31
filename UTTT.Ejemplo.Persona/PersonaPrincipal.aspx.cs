@@ -1,17 +1,14 @@
 ﻿#region Using
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
+using System.Linq.Expressions;
 using System.Web.UI.WebControls;
 using UTTT.Ejemplo.Linq.Data.Entity;
-using System.Data.Linq;
-using System.Linq.Expressions;
-using System.Collections;
 using UTTT.Ejemplo.Persona.Control;
 using UTTT.Ejemplo.Persona.Control.Ctrl;
-using System.Text;
 
 #endregion
 
@@ -30,7 +27,8 @@ namespace UTTT.Ejemplo.Persona
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            AppDomain.CurrentDomain.FirstChanceException += (enviar, ee) => {
+            AppDomain.CurrentDomain.FirstChanceException += (enviar, ee) =>
+            {
                 System.Text.StringBuilder msg = new System.Text.StringBuilder();
                 msg.AppendLine(ee.Exception.GetType().FullName);
                 msg.AppendLine(ee.Exception.Message);
@@ -41,6 +39,7 @@ namespace UTTT.Ejemplo.Persona
             };
 
 
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 Response.Buffer = true;
@@ -62,10 +61,12 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al cargar la página");
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 this.DataSourcePersona.RaiseViewChanged();
@@ -74,10 +75,12 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al buscar");
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 this.session.Pantalla = "~/PersonaManager.aspx";
@@ -91,6 +94,7 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al agregar");
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void DataSourcePersona_Selecting(object sender, LinqDataSourceSelectEventArgs e)
@@ -130,6 +134,7 @@ namespace UTTT.Ejemplo.Persona
 
         protected void dgvPersonas_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 int idPersona = int.Parse(e.CommandArgument.ToString());
@@ -144,12 +149,19 @@ namespace UTTT.Ejemplo.Persona
                     case "Direccion":
                         this.direccion(idPersona);
                         break;
+                    case "NumeroSeguro":
+                        this.seguro(idPersona);
+                        break;
+                    case "Directorio":
+                        this.directorio(idPersona);
+                        break;
                 }
             }
             catch (Exception _e)
             {
                 this.showMessage("Ha ocurrido un problema al seleccionar");
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         #endregion 
@@ -211,10 +223,47 @@ namespace UTTT.Ejemplo.Persona
             }
         }
 
+        private void directorio(int _idPersona)
+        {
+            try
+            {
+                Hashtable parametrosRagion = new Hashtable();
+                parametrosRagion.Add("idPersona", _idPersona.ToString());
+                this.session.Parametros = parametrosRagion;
+                this.Session["SessionManager"] = this.session;
+                this.session.Pantalla = String.Empty;
+                this.session.Pantalla = "~/Extras/DirectorioPrincipal.aspx";
+                this.Response.Redirect(this.session.Pantalla, false);
+            }
+            catch (Exception _e)
+            {
+                throw _e;
+            }
+        }
+
+        private void seguro(int _idPersona)
+        {
+            try
+            {
+                Hashtable parametrosRagion = new Hashtable();
+                parametrosRagion.Add("idPersona", _idPersona.ToString());
+                this.session.Parametros = parametrosRagion;
+                this.Session["SessionManager"] = this.session;
+                this.session.Pantalla = String.Empty;
+                this.session.Pantalla = "~/Extras/NumeroSeguroPrincipal.aspx";
+                this.Response.Redirect(this.session.Pantalla, false);
+            }
+            catch (Exception _e)
+            {
+                throw _e;
+            }
+        }
+
         #endregion
 
         protected void onTxtNombreTextChange(object sender, EventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 this.DataSourcePersona.RaiseViewChanged();
@@ -223,6 +272,7 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al buscar");
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void buscarTextBox(object sender, EventArgs e)

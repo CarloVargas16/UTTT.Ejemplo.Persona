@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using UTTT.Ejemplo.Persona.Control.Interface;
-using UTTT.Ejemplo.Persona.Data.Entity;
 using System.Data.SqlClient;
+using UTTT.Ejemplo.Persona.Control.Interface;
 
 namespace UTTT.Ejemplo.Persona.Control.Ctrl
 {
@@ -28,6 +24,7 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
 
         public List<object> consultarLista(object _o)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 UTTT.Ejemplo.Persona.Data.Entity.Persona persona = (UTTT.Ejemplo.Persona.Data.Entity.Persona)_o;
@@ -57,6 +54,7 @@ namespace UTTT.Ejemplo.Persona.Control.Ctrl
             {
 
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
             return null;
         }
 

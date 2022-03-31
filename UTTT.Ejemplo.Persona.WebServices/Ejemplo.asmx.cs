@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
-using UTTT.Ejemplo.Persona.Data;
 using System.Data.Linq;
+using System.Linq;
+using System.Web.Services;
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Linq' no existe en el espacio de nombres 'UTTT.Ejemplo' (¿falta alguna referencia de ensamblado?)
 using UTTT.Ejemplo.Linq.Data.Entity;
-using System.Linq.Expressions;
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Linq' no existe en el espacio de nombres 'UTTT.Ejemplo' (¿falta alguna referencia de ensamblado?)
 
 namespace UTTT.Ejemplo.Persona.WebServices
 {
@@ -23,7 +22,9 @@ namespace UTTT.Ejemplo.Persona.WebServices
         #region Web Metodos Persona
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public bool insertarPersona(UTTT.Ejemplo.Persona.Data.Entity.Persona _persona)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
@@ -39,19 +40,21 @@ namespace UTTT.Ejemplo.Persona.WebServices
                 dcTemp.Dispose();
                 return true;
             }
-            catch(Exception _e)
+            catch (Exception _e)
             {
                 return false;
             }
         }
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public bool editarPersona(UTTT.Ejemplo.Persona.Data.Entity.Persona _persona)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
                 DataContext dcTemp = new DcGeneralDataContext();
-                UTTT.Ejemplo.Linq.Data.Entity.Persona persona = 
+                UTTT.Ejemplo.Linq.Data.Entity.Persona persona =
                     dcTemp.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().First(c => c.id == _persona.Id);
                 persona.strClaveUnica = _persona.StrClaveUnica;
                 persona.strNombre = _persona.StrNombre;
@@ -69,7 +72,9 @@ namespace UTTT.Ejemplo.Persona.WebServices
         }
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public bool eliminarPersona(UTTT.Ejemplo.Persona.Data.Entity.Persona _persona)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
@@ -89,7 +94,9 @@ namespace UTTT.Ejemplo.Persona.WebServices
         }
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public UTTT.Ejemplo.Persona.Data.Entity.Persona[] consultarGlobalPersona()
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
@@ -97,7 +104,7 @@ namespace UTTT.Ejemplo.Persona.WebServices
                 List<UTTT.Ejemplo.Linq.Data.Entity.Persona> listaPersona =
                     dcTemp.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().ToList();
                 UTTT.Ejemplo.Persona.Data.Entity.Persona[] tempPersona = new Data.Entity.Persona[listaPersona.Count()];
-                
+
                 for (int i = 0; i < listaPersona.Count(); i++)
                 {
                     //asignamos el objeto persona uno por uno
@@ -117,22 +124,26 @@ namespace UTTT.Ejemplo.Persona.WebServices
                 }
                 dcTemp.Dispose();
                 return tempPersona;
-               
+
             }
             catch (Exception _e)
             {
                 return null;
             }
-            
+
         }
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public UTTT.Ejemplo.Persona.Data.Entity.Persona consultarUnicaPersona(UTTT.Ejemplo.Persona.Data.Entity.Persona _persona)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
                 DataContext dcTemp = new DcGeneralDataContext();
-             
+
                 //objeto persona
                 UTTT.Ejemplo.Linq.Data.Entity.Persona persona =
                     dcTemp.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Persona>().First(c => c.id == _persona.Id);
@@ -148,12 +159,12 @@ namespace UTTT.Ejemplo.Persona.WebServices
                 catSexoTemp.StrValor = persona.CatSexo.strValor;
                 temp.CatSexoTemp = catSexoTemp;
                 dcTemp.Dispose();
-                return temp;                
+                return temp;
             }
             catch (Exception _e)
             {
                 return null;
-            }            
+            }
         }
 
         #endregion
@@ -161,7 +172,9 @@ namespace UTTT.Ejemplo.Persona.WebServices
         #region Web Metodos Direccion
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public bool insertarDireccion(UTTT.Ejemplo.Persona.Data.Entity.Direccion _direccion)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
@@ -183,16 +196,18 @@ namespace UTTT.Ejemplo.Persona.WebServices
         }
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public bool editarDireccion(UTTT.Ejemplo.Persona.Data.Entity.Direccion _direccion)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
                 DataContext dcTemp = new DcGeneralDataContext();
-                UTTT.Ejemplo.Linq.Data.Entity.Direccion direccion = dcTemp.GetTable<Direccion>().First( c=> c.id == _direccion.Id);
-               // direccion.idPersona = _direccion.IdPersona;
+                UTTT.Ejemplo.Linq.Data.Entity.Direccion direccion = dcTemp.GetTable<Direccion>().First(c => c.id == _direccion.Id);
+                // direccion.idPersona = _direccion.IdPersona;
                 direccion.strCalle = _direccion.StrCalle;
                 direccion.strColonia = _direccion.StrColonia;
-                direccion.strNumero = _direccion.StrNumero;                
+                direccion.strNumero = _direccion.StrNumero;
                 dcTemp.SubmitChanges();
                 dcTemp.Dispose();
                 return true;
@@ -204,7 +219,9 @@ namespace UTTT.Ejemplo.Persona.WebServices
         }
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public bool eliminarDireccion(UTTT.Ejemplo.Persona.Data.Entity.Direccion _direccion)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
@@ -222,12 +239,14 @@ namespace UTTT.Ejemplo.Persona.WebServices
         }
 
         [WebMethod]
-        public UTTT.Ejemplo.Persona.Data.Entity.Direccion[] consultarGlobalDireccion(int  _IDpersona)
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
+        public UTTT.Ejemplo.Persona.Data.Entity.Direccion[] consultarGlobalDireccion(int _IDpersona)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
                 DataContext dcTemp = new DcGeneralDataContext();
-                
+
                 List<UTTT.Ejemplo.Linq.Data.Entity.Direccion> listaDireccion =
                     dcTemp.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Direccion>().Where(c => c.idPersona == _IDpersona).ToList();
                 UTTT.Ejemplo.Persona.Data.Entity.Direccion[] tempDireccion = new Data.Entity.Direccion[listaDireccion.Count()];
@@ -255,7 +274,11 @@ namespace UTTT.Ejemplo.Persona.WebServices
         }
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public UTTT.Ejemplo.Persona.Data.Entity.Direccion consultarUnicaDireccion(UTTT.Ejemplo.Persona.Data.Entity.Direccion _direccion)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
@@ -266,13 +289,13 @@ namespace UTTT.Ejemplo.Persona.WebServices
                 temp.IdPersona = direccion.idPersona;
                 temp.StrCalle = direccion.strCalle;
                 temp.StrColonia = direccion.strColonia;
-                temp.StrNumero = direccion.strNumero;                
+                temp.StrNumero = direccion.strNumero;
                 dcTemp.Dispose();
-                return temp;               
+                return temp;
             }
             catch (Exception _e)
             {
-                
+
             }
             return null;
 
@@ -283,12 +306,14 @@ namespace UTTT.Ejemplo.Persona.WebServices
         #region Catalogo Sexo
 
         [WebMethod]
+#pragma warning disable CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         public UTTT.Ejemplo.Persona.Data.Entity.CatSexo[] consultaGlobalSexo()
+#pragma warning restore CS0234 // El tipo o el nombre del espacio de nombres 'Data' no existe en el espacio de nombres 'UTTT.Ejemplo.Persona' (¿falta alguna referencia de ensamblado?)
         {
             try
             {
                 DataContext dcTemp = new DcGeneralDataContext();
-                List<UTTT.Ejemplo.Linq.Data.Entity.CatSexo> listaSexo =            dcTemp.GetTable<UTTT.Ejemplo.Linq.Data.Entity.CatSexo>().ToList();
+                List<UTTT.Ejemplo.Linq.Data.Entity.CatSexo> listaSexo = dcTemp.GetTable<UTTT.Ejemplo.Linq.Data.Entity.CatSexo>().ToList();
                 UTTT.Ejemplo.Persona.Data.Entity.CatSexo[] tempSexo = new Data.Entity.CatSexo[listaSexo.Count()];
 
                 for (int i = 0; i < listaSexo.Count(); i++)

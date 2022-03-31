@@ -2,15 +2,9 @@
 #region Using
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using UTTT.Ejemplo.Linq.Data.Entity;
 using System.Data.Linq;
-using System.Linq.Expressions;
-using System.Collections;
+using System.Linq;
+using UTTT.Ejemplo.Linq.Data.Entity;
 using UTTT.Ejemplo.Persona.Control;
 using UTTT.Ejemplo.Persona.Control.Ctrl;
 
@@ -26,7 +20,9 @@ namespace UTTT.Ejemplo.Persona
         private int idPersona = 0;
         private UTTT.Ejemplo.Linq.Data.Entity.Direccion baseEntity;
         private DataContext dcGlobal = new DcGeneralDataContext();
+#pragma warning disable CS0414 // El campo 'DireccionExtraManager.tipoAccion' está asignado pero su valor nunca se usa
         private int tipoAccion = 0;
+#pragma warning restore CS0414 // El campo 'DireccionExtraManager.tipoAccion' está asignado pero su valor nunca se usa
         private int idDireccion = 0;
 
         #endregion
@@ -35,6 +31,7 @@ namespace UTTT.Ejemplo.Persona
 
         protected void Page_Load(object sender, EventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 this.Response.Buffer = true;
@@ -80,6 +77,7 @@ namespace UTTT.Ejemplo.Persona
                 this.showMessage("Ha ocurrido un problema al cargar la página");
                 this.Response.Redirect("~/DireccionManager.aspx", false);
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
 
         }
 
@@ -97,7 +95,7 @@ namespace UTTT.Ejemplo.Persona
                     direccion.strNumero = this.txtNumero.Text.Trim();
                     dcGuardar.GetTable<UTTT.Ejemplo.Linq.Data.Entity.Direccion>().InsertOnSubmit(direccion);
                     dcGuardar.SubmitChanges();
-                    this.showMessage("El registro se agrego correctamente.");                  
+                    this.showMessage("El registro se agrego correctamente.");
                     this.Response.Redirect("~/DireccionManager.aspx");
                 }
                 if (this.idDireccion > 0)
@@ -107,7 +105,7 @@ namespace UTTT.Ejemplo.Persona
                     direccion.strColonia = this.txtColonia.Text.Trim();
                     direccion.strNumero = this.txtNumero.Text.Trim();
                     dcGuardar.SubmitChanges();
-                    this.showMessage("El registro se edito correctamente.");                   
+                    this.showMessage("El registro se edito correctamente.");
                     this.Server.Transfer("~/DireccionManager.aspx");
 
                 }
@@ -120,14 +118,16 @@ namespace UTTT.Ejemplo.Persona
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
-                this.Response.Redirect("~/DireccionManager.aspx");               
+                this.Response.Redirect("~/DireccionManager.aspx");
             }
             catch (Exception _e)
             {
                 this.showMessage("Ha ocurrido un error inesperado");
             }
+#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         #endregion

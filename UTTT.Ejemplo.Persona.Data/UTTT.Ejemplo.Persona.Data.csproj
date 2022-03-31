@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UTTT.Ejemplo.Persona.Data</RootNamespace>
     <AssemblyName>UTTT.Ejemplo.Persona.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -45,7 +45,10 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Entity\CatSexo.cs" />
     <Compile Include="Entity\Direccion.cs" />
+    <Compile Include="Entity\Directorio.cs" />
+    <Compile Include="Entity\NumeroSeguro.cs" />
     <Compile Include="Entity\Persona.cs" />
+    <Compile Include="Entity\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

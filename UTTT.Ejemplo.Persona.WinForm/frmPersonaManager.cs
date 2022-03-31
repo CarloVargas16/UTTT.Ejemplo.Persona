@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ejemplo = UTTT.Ejemplo.Persona.WinForm.Ejemplo;
 
@@ -20,7 +14,7 @@ namespace UTTT.Ejemplo.Persona.WinForm
         {
             InitializeComponent();
         }
-       
+
         public bool setForm(Form _parent, ejemplo.Persona _persona)
         {
             this.personaGlobal = _persona;
@@ -45,7 +39,7 @@ namespace UTTT.Ejemplo.Persona.WinForm
                     this.txtAParterno.Text = this.personaGlobal.StrAPaterno;
                     this.txtAMaterno.Text = this.personaGlobal.StrAMaterno;
                 }
-                
+
                 ejemplo.CatSexo[] listaSexo = this.example.consultaGlobalSexo();
                 this.cmbSexo.DataSource = listaSexo;
                 this.cmbSexo.ValueMember = "Id";
@@ -55,7 +49,7 @@ namespace UTTT.Ejemplo.Persona.WinForm
             {
                 throw _e;
             }
-        
+
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
