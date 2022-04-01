@@ -5,15 +5,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
     <title></title>
 </head>
 <body>
     <form id="form1" runat="server">
          <asp:ScriptManager ID="ScriptManager1"
                 runat="server" />
-            <div>
+
+         <div class="navbar bg-dark navbar-dark">
+<br />
+    <div class="container text-white">
+            <h1>Bienvenido</h1>
+        </div>
+
+        <div class="container text-white">
+            <h4>
+                <asp:Label ID="lblAccion" runat="server" Text="Accion" Font-Bold="True">Agregacion y eliminacion de libros</asp:Label>
+            </h4>
+        </div>
+        </div>
+
+        <br />
+
+            <div class="container">
                 <div style="font-family: Arial; font-size:smaller; font-weight: bold">
-                    <h1 class="text-center">Nombre Del Usuario:
+                    <h1 class="text-center">Bienvenido de nuevo :
                         <asp:Label ID="lblUsuario" runat="server"></asp:Label>
                     </h1>
                 </div>
@@ -26,42 +44,34 @@
                         </asp:UpdatePanel>
          <div>
     <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre del libro:&nbsp;&nbsp;&nbsp;
-
-       <div style="margin-left: 80px">
+     Nombre del libro:
            <asp:TextBox ID="txtNombre" runat="server"
                            Height="40px" Width="253px" ViewStateMode="Disabled" Class="form-control" placeholder="Usuario" OnTextChanged="txtNombre_TextChanged" MaxLength="20" ></asp:TextBox>
-        </div>  
+        
     </p>
     </div>
 
                     <div>
-        <div>    
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Estado:&nbsp;&nbsp;&nbsp;&nbsp;
+        <div>
+            Ubicacion:<asp:DropDownList ID="ddlPertenencia" runat="server" Height="40px" Width="253px" Class="form-control">
+            </asp:DropDownList>
         </div>
-       <div style="margin-left: 80px">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:DropDownList ID="ddlPertenencia" runat="server" Height="40px" Width="253px" Class="form-control">
-                        </asp:DropDownList>
     </div>
-    </div>
-                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        
+                    <br />
          <asp:Button ID="btnBuscar" runat="server" Text="Buscar" 
-            onclick="btnBuscar_Click" ViewStateMode="Disabled" class="btn btn-primary"/>
+            onclick="btnBuscar_Click" ViewStateMode="Disabled" class="btn btn-outline-primary"/>
         &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" 
-            onclick="btnAgregar_Click" ViewStateMode="Disabled" class="btn btn-warning"/>
+            onclick="btnAgregar_Click" ViewStateMode="Disabled" class="btn btn-outline-danger"/>
         &nbsp;&nbsp;&nbsp;
                         <asp:Button ID="BtnRegresar" runat="server" Text="Inicio" 
-                            Class="btn btn-success" OnClick="BtnRegresar_Click"/>
-                    <div class="col-md-2">
-
-                        
-
-                    </div>
+                            Class="btn btn-outline-info" OnClick="BtnRegresar_Click"/>
+                  
+                <br />
+                <hr />
+                <br />
                 
-                 <div style="font-weight: bold" class="mt-4">
+                 <div style="font-weight: bold" class="container w-25">
                         <h3 class="text-center">Detalle
                         </h3>
                     </div>

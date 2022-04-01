@@ -39,7 +39,6 @@ namespace UTTT.Ejemplo.Persona
             };
 
 
-#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 Response.Buffer = true;
@@ -61,12 +60,10 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al cargar la página");
             }
-#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 this.DataSourcePersona.RaiseViewChanged();
@@ -75,12 +72,10 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al buscar");
             }
-#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-#pragma warning disable CS0168 // La variable '_e' se ha declarado pero nunca se usa
             try
             {
                 this.session.Pantalla = "~/PersonaManager.aspx";
@@ -94,7 +89,6 @@ namespace UTTT.Ejemplo.Persona
             {
                 this.showMessage("Ha ocurrido un problema al agregar");
             }
-#pragma warning restore CS0168 // La variable '_e' se ha declarado pero nunca se usa
         }
 
         protected void DataSourcePersona_Selecting(object sender, LinqDataSourceSelectEventArgs e)

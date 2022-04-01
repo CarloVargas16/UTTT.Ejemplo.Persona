@@ -143,7 +143,7 @@
                     <asp:AsyncPostBackTrigger ControlID="ddlEstadoCivil" EventName="SelectedIndexChanged" />
                 </Triggers>
                 </asp:UpdatePanel>
-         </div>
+        
 
             
         

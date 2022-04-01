@@ -114,7 +114,7 @@ namespace UTTT.Ejemplo.Persona.RegistrarUsuarios
                 Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Usuario, bool>>
                     predicate =
                     (c =>
-                    ((estadoBool) ? c.id == int.Parse(this.ddlEstado.Text) : true) &&
+                    ((estadoBool) ? c.idCatValorUsuario == int.Parse(this.ddlEstado.Text) : true) &&
                     ((nombreBool) ? (((nombreBool) ? c.strNombreUsuario.Contains(this.txtNombre.Text.Trim()) : false)) : true)
                     );
 

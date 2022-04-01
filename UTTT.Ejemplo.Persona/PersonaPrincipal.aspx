@@ -9,19 +9,32 @@
    <script  src= "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <title></title>
 </head>
-<body>   
+<body class="bg-light">
+   <div class="navbar bg-dark navbar-dark">
+<br />
+    <div class="container text-white">
+            <h1>Bienvenido</h1>
+        </div>
+
+        <div class="container text-white">
+            <h4>
+                <asp:Label ID="lblAccion" runat="server" Text="Accion" Font-Bold="True">Administracion de tu personal</asp:Label>
+            </h4>
+        </div>
+        </div>
+
     <div class="container mt-3">
 
     <form id="form1" runat="server">
+
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-
-    <div class="container w-25">
-        <h4>
-            Persona</h4>
-    </div>
-
+   
+        <br />
 
     <div class="container"> 
+
+    <h4> Agrega un nombre: </h4>
+        <br />
     <p>
         
         Nombre:&nbsp;&nbsp;&nbsp;
@@ -36,11 +49,13 @@
 
 
         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" 
-            onclick="btnBuscar_Click" ViewStateMode="Disabled" class="btn-info btn-sm" />
+            onclick="btnBuscar_Click" ViewStateMode="Disabled" class="btn btn-primary btn-sm" />
         &nbsp;&nbsp;&nbsp;
         <asp:Button ID="btnAgregar" runat="server" Text="Agregar" 
-            onclick="btnAgregar_Click" ViewStateMode="Disabled" class="btn-warning btn-sm" />
-    </p>
+            onclick="btnAgregar_Click" ViewStateMode="Disabled" class="btn btn-danger btn-sm" />
+         &nbsp;&nbsp;&nbsp;
+          <asp:LinkButton ID="LinkButton6" runat="server" href="Hotel.aspx">Menu Principal</asp:LinkButton>
+         </p>
        </div> 
     
     <div class="container">
@@ -53,6 +68,9 @@
        </div>
 
     <br />
+        <br />
+        <hr />
+        <br />
     <div class="container w-25">
          <h4> Detalle </h4> </div>
   

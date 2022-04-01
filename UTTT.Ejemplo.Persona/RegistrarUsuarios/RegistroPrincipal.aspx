@@ -11,62 +11,82 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
+    <div class="navbar bg-dark navbar-dark">
+<br />
+    <div class="container text-white">
+            <h1>Bienvenido</h1>
+        </div>
+
+        <div class="container text-white">
+            <h4>
+                <asp:Label ID="lblAccion" runat="server" Text="Accion" Font-Bold="True">Administracion de tus usuarios</asp:Label>
+            </h4>
+        </div>
+        </div>
+
             <asp:ScriptManager ID="ScriptManager1"
                 runat="server" />
-            <div>
-                <div style="font-family: Arial; font-size:smaller; font-weight: bold">
-                    <h1 class="text-center">Nombre Del Usuario:
+
+
+            <div class="container">
+
+                <br />
+                <div class="container" style="font-family: Arial; font-size:smaller; font-weight: bold">
+                    <h4>Un gusto volver a verte
                         <asp:Label ID="lblUsuario" runat="server"></asp:Label>
-                    </h1>
+                    </h4>
                 </div>
                 <br />
+
+                <hr />
                  
                      <asp:UpdatePanel ID="paneltxtName" runat="server">
                              <ContentTemplate>
                                  <asp:Button style="display: none;" ID="btnTrick" runat="server" OnClick="btnTrick_Click"/>
                              </ContentTemplate>
                         </asp:UpdatePanel>
-         <div>
-    <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre Usuario:&nbsp;&nbsp;&nbsp;
 
-       <div style="margin-left: 80px">
+          <br />
+         <div class="container">
+  
+        Nombre Usuario:
+         
+             <br />
+         
            <asp:TextBox ID="txtNombre" runat="server"
-                           Height="40px" Width="253px" ViewStateMode="Disabled" Class="form-control" placeholder="Usuario" OnTextChanged="txtNombre_TextChanged" MaxLength="20" ></asp:TextBox>
-        </div>  
-    </p>
+                           Height="40px" Width="253px" ViewStateMode="Disabled" placeholder="Usuario" OnTextChanged="txtNombre_TextChanged" MaxLength="20" ></asp:TextBox>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" 
+            onclick="btnBuscar_Click" ViewStateMode="Disabled" class="btn btn-primary"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" 
+            onclick="btnAgregar_Click" ViewStateMode="Disabled" class="btn btn-warning"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="BtnRegresar" runat="server" Text="Inicio" 
+                            Class="btn btn-success" OnClick="BtnRegresar_Click"/>
+             <br />
+             <br />
     </div>
 
-                    <div>
-        <div>    
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Estado:&nbsp;&nbsp;&nbsp;&nbsp;
-        </div>
-       <div style="margin-left: 80px">
+
+
+        <div class="container">
+        Estado:&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:DropDownList ID="ddlEstado" runat="server" Height="40px" Width="253px" Class="form-control">
                         </asp:DropDownList>
     </div>
-    </div>
-                    <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        
-         <asp:Button ID="btnBuscar" runat="server" Text="Buscar" 
-            onclick="btnBuscar_Click" ViewStateMode="Disabled" class="btn btn-primary"/>
-        &nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" 
-            onclick="btnAgregar_Click" ViewStateMode="Disabled" class="btn btn-warning"/>
-        &nbsp;&nbsp;&nbsp;
-                        <asp:Button ID="BtnRegresar" runat="server" Text="Inicio" 
-                            Class="btn btn-success" OnClick="BtnRegresar_Click"/>
-                    <div class="col-md-2">
-
-                        
-
-                    </div>
-                
-                 <div style="font-weight: bold" class="mt-4">
-                        <h3 class="text-center">Detalle
+           
+            <br />
+                <hr />
+                <br />
+                 <div style="font-weight: bold" class="container w-25">
+                        <h3>Detalle
                         </h3>
                     </div>
+
+
                   <div style="margin-left: 10px" class="table-responsive">
                      
                                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">

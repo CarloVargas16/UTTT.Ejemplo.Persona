@@ -5,31 +5,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
 </head>
-<body>
+<body class="bg-light">
+     <form id="form1" runat="server">
+     
+     <div class="navbar bg-dark navbar-dark">
+     <br />
+    <div class="container text-white">
+            <h1>Bienvenido : </h1>
+        </div>
 
-     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="navbar-header">
-     <a class="navbar-brand" href="#"><h5>BIENVENIDO</h5></a>
-            </div>
-     <div class="collapse navbar-collapse" id="navbarNav" >
-       <ul class="navbar-nav">
-         <li class="nav-item">
-           <a class="nav-link" href="PersonaPrincipal.aspx"><h4>Persona Principal   <i class="bi bi-person"></i></h4><span class="sr-only"></span></a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" href="RegistrarUsuarios/RegistroPrincipal.aspx"><h4>Usuarios   <i class="bi bi-people"></i></h4><span class="sr-only"></span></a>
-         </li>
-           <li class="nav-item">
-           <a class="nav-link" href="Login.aspx"><h4>Salir    <i class="bi bi-door-open"></i></h4> <span class="sr-only"></span></a>
-         </li>
-       </ul>
-     </div>
-   </nav>
+        <div class="container text-white">
+            <h4>
+                <asp:Label ID="lblAccion" runat="server" Text="Accion" Font-Bold="True">Recuperacion de contraseña</asp:Label>
+            </h4>
+        </div>
 
-
-    <form id="form1" runat="server">
+        </div>
+           
         <div>
 
               <div class="container">
@@ -40,13 +41,18 @@
             <div class="col-md-5">
                 <div class="efecto">
                 <div class="card">
-                    <img src="../Images/useer.png" class="card-img-top" alt="persona" height="250" />
+                    <img src="../Images/recepcion-hotel-02.jpg" class="card-img-top" alt="persona" height="250" />
                     <div class="sep">
                         <div class="wrapper">
-                         <p class="slogan" style="text-align: justify;"><span> Bienvenido selecciona el campo a visitar en la parte superior de la pagina</span>.</p>
                         </div>
                    </div>
                 </div>
+                    <br />
+                     <p class="slogan" style="text-align: justify;"><span><h4> Recuerda seleccionar un boton a visitar para cualquier accion que deseas realizar </h4> </span>.</p>
+                     <asp:LinkButton ID="LinkButton4" runat="server" href="PersonaPrincipal.aspx">Registro de Personal</asp:LinkButton>
+             &nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="LinkButton5" runat="server" href="RegistrarUsuarios/RegistroPrincipal.aspx">Registro de Usuarios</asp:LinkButton>
+             &nbsp;&nbsp;
+             <asp:LinkButton ID="LinkButton6" runat="server" href="Login.aspx">Salir</asp:LinkButton>
             </div>
             </div>
         </div>
@@ -56,10 +62,10 @@
             </div>
         </div>
     </div>
-
-
-
         </div>
+
+
+
     </form>
 </body>
 </html>

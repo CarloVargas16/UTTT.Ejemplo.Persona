@@ -112,7 +112,7 @@ namespace UTTT.Ejemplo.Persona.Libreria
                 Expression<Func<UTTT.Ejemplo.Linq.Data.Entity.Libros, bool>>
                     predicate =
                     (c =>
-                    ((estadoBool) ? c.id == int.Parse(this.ddlPertenencia.Text) : true) &&
+                    ((estadoBool) ? c.idPertenencia == int.Parse(this.ddlPertenencia.Text) : true) &&
                     ((nombreBool) ? (((nombreBool) ? c.strNombre.Contains(this.txtNombre.Text.Trim()) : false)) : true)
                     );
 
